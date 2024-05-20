@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "question": "O que é a SEL?",
+    "answer": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, quasi consequatur perspiciatis odio voluptate maiores obcaecati, rerum cumque laudantium totam delectus suscipit assumenda voluptatum nostrum! Sequi ipsum id illo repellendus."
+  },
+  {
+    "id": 2,
+    "question": "Para quem é indicado?",
+    "answer": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, quasi consequatur perspiciatis odio voluptate maiores obcaecati, rerum cumque laudantium totam delectus suscipit assumenda voluptatum nostrum! Sequi ipsum id illo repellendus."
+  },
+  {
+    "id": 3,
+    "question": "Como funciona?",
+    "answer": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, quasi consequatur perspiciatis odio voluptate maiores obcaecati, rerum cumque laudantium totam delectus suscipit assumenda voluptatum nostrum! Sequi ipsum id illo repellendus."
+  },
+  {
+    "id": 4,
+    "question": "Quais os valores?",
+    "answer": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, quasi consequatur perspiciatis odio voluptate maiores obcaecati, rerum cumque laudantium totam delectus suscipit assumenda voluptatum nostrum! Sequi ipsum id illo repellendus."
+  },
+  {
+    "id": 5,
+    "question": "Em quais segmentos a SEL atua?",
+    "answer": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, quasi consequatur perspiciatis odio voluptate maiores obcaecati, rerum cumque laudantium totam delectus suscipit assumenda voluptatum nostrum! Sequi ipsum id illo repellendus."
+  }
+]
