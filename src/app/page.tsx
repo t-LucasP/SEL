@@ -384,7 +384,7 @@ export default function Home() {
         </div>
         <Spline
           scene="https://prod.spline.design/Knai6zdQmsCPg6JF/scene.splinecode"
-          className="absolute left-[-6vw] top-0 !w-[500px] z-0"
+          className="absolute left-[-200px] top-0 !w-[500px] z-0"
         />
       </section>
       <footer className="w-full py-4">
