@@ -28,15 +28,31 @@ import reports from "@/assets/json-lootie/reports.json";
 import access from "@/assets/json-lootie/access.json";
 import chat from "@/assets/json-lootie/chat.json";
 import GradientTextAnimated from "@/components/gradient-text";
-import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import { ChevronRight, ChevronUp } from "lucide-react";
 import rightLeftDotted from "@/assets/images/lines/right-left.svg";
 import leftRightDotted from "@/assets/images/lines/left-right.svg";
 import questions from "@/lib/faq.json";
-import { Form, FormField } from "@/components/ui/form";
 import ContactForm from "@/components/contact-form";
+import { useRef } from "react";
+import { useInView } from "framer-motion";
 
 export default function Home() {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const ref = useRef(null);
+  const refResources = useRef(null);
+  const isInView = useInView(ref, {
+    once: true,
+  });
+  const isInViewResources = useInView(ref, {
+    once: true,
+  });
+
   return (
     <div>
       <Header />
@@ -88,8 +104,12 @@ export default function Home() {
           </h2>
           <div className="flex gap-x-4 justify-between items-center">
             <div className="flex flex-col gap-y-4 lg:w-1/2 w-full">
-              <div className="flex flex-col items-start gap-y-2 border-b-gray-400 border-b-2 py-2">
-                <p className="text-2xl  ">Visão Geral</p>
+              <div className="flex flex-col items-start gap-y-2 py-2">
+                <div className="w-full flex items-center justify-center gap-4">
+                  <div className="bg-gradient-to-l from-purple-700 to-transparent h-[1px] flex-1 w-full "></div>
+                  <p className="text-2xl">Visão Geral</p>
+                  <div className="bg-gradient-to-r from-purple-700 to-transparent h-[1px] flex-1 "></div>
+                </div>
                 <p className="text-md text-gray-400 ">
                   Somos uma instituição dedicada ao desenvolvimento, capacitação
                   e implementação de soluções inovadoras em Tecnologia
@@ -99,8 +119,12 @@ export default function Home() {
                   Educacional.
                 </p>
               </div>
-              <div className="flex flex-col items-start gap-y-2 border-b-gray-400 border-b-2 py-2">
-                <p className="text-2xl  ">Missão</p>
+              <div className="flex flex-col items-start gap-y-2 py-2">
+                <div className="w-full flex items-center justify-center gap-4">
+                  <div className="bg-gradient-to-l from-purple-700 to-transparent h-[1px] flex-1 w-full "></div>
+                  <p className="text-2xl">Missão</p>
+                  <div className="bg-gradient-to-r from-purple-700 to-transparent h-[1px] flex-1 "></div>
+                </div>
                 <p className="text-md text-gray-400 ">
                   Na SEL, nossa missão é facilitar o uso eficaz da tecnologia na
                   educação, promovendo um ambiente de aprendizagem inovador e
@@ -108,7 +132,11 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex flex-col items-start gap-y-2 py-2">
-                <p className="text-2xl  ">Compromisso</p>
+                <div className="w-full flex items-center justify-center gap-4">
+                  <div className="bg-gradient-to-l from-purple-700 to-transparent h-[1px] flex-1 w-full "></div>
+                  <p className="text-2xl">Compromisso</p>
+                  <div className="bg-gradient-to-r from-purple-700 to-transparent h-[1px] flex-1 "></div>
+                </div>
                 <p className="text-md text-gray-400 ">
                   Na SEL, integramos tecnologia e educação para melhorar a
                   aprendizagem e elevar a qualidade do ensino em escolas e redes
@@ -130,8 +158,16 @@ export default function Home() {
               </span>
               <div className="bg-gradient-to-r from-purple-700 to-transparent h-[1px] flex-1 "></div>
             </div>
-            <div className="flex w-full lg:flex-row flex-col gap-4">
-              <div className="w-full flex items-center justify-start p-4 h-[100px] overflow-hidden bg-slate-900 rounded-md">
+            <div ref={ref} className="flex w-full lg:flex-row flex-col gap-4">
+              <div
+                className="w-full flex items-center justify-start p-4 h-[100px] overflow-hidden bg-slate-900 rounded-md"
+                style={{
+                  transform: isInView ? "none" : "translateY(15vh)",
+                  opacity: isInView ? 1 : 0,
+                  transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1)",
+                  transitionDelay: "0.2s",
+                }}
+              >
                 <span className="text-purple-700 translate-x-[-9px] text-[10rem] opacity-65">
                   1
                 </span>
@@ -139,7 +175,15 @@ export default function Home() {
                   Desenvolvimento de Portal de Conteúdos Pedagógicos
                 </span>
               </div>
-              <div className="w-full flex items-center justify-start p-4 h-[100px] overflow-hidden bg-slate-900 rounded-md">
+              <div
+                className="w-full flex items-center justify-start p-4 h-[100px] overflow-hidden bg-slate-900 rounded-md"
+                style={{
+                  transform: isInView ? "none" : "translateY(15vh)",
+                  opacity: isInView ? 1 : 0,
+                  transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1)",
+                  transitionDelay: "0.4s",
+                }}
+              >
                 <span className="text-purple-700 translate-x-[-9px] text-[10rem] opacity-65">
                   2
                 </span>
@@ -147,7 +191,15 @@ export default function Home() {
                   Consultoria em Tecnologia Educacional
                 </span>
               </div>
-              <div className="w-full   flex items-center justify-start p-4 h-[100px] overflow-hidden bg-slate-900 rounded-md">
+              <div
+                className="w-full flex items-center justify-start p-4 h-[100px] overflow-hidden bg-slate-900 rounded-md"
+                style={{
+                  transform: isInView ? "none" : "translateY(15vh)",
+                  opacity: isInView ? 1 : 0,
+                  transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1)",
+                  transitionDelay: "0.6s",
+                }}
+              >
                 <span className="text-purple-700 translate-x-[-9px] text-[10rem] opacity-65">
                   3
                 </span>
@@ -176,11 +228,22 @@ export default function Home() {
           </Marquee>
         </div>
       </section>
-      <section className="w-screen py-24 bg-gray-800">
-        <div className="w-full lg:max-w-[1280px] m-auto max-w-[90%] flex flex-col items-start justify-start gap-8">
+      <section className="w-screen py-24 bg-zinc-950">
+        <div
+          className="w-full lg:max-w-[1280px] m-auto max-w-[90%] flex flex-col items-start justify-start gap-8"
+          ref={refResources}
+        >
           <h4 className="text-3xl">Todos os recursos que você procura</h4>
           <div className="flex gap-4 flex-wrap">
-            <div className="w-full flex-1 lg:h-[480px] h-auto min-w-[400px] p-4 border-2 bg-zinc-900 rounded-md border-slate-700 flex flex-col items-center justify-start gap-8 hover:border-purple-700 ease-in-out transition-colors">
+            <div
+              className="w-full flex-1 lg:h-[480px] h-auto min-w-[400px] p-4 border-2 bg-zinc-900 rounded-md border-slate-700 flex flex-col items-center justify-start gap-8 hover:border-purple-700 ease-in-out transition-colors"
+              style={{
+                transform: isInViewResources ? "none" : "translateX(15vw)",
+                opacity: isInViewResources ? 1 : 0,
+                transition:
+                  "transform 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.2s",
+              }}
+            >
               <div className="flex flex-col gap-y-2">
                 <span className="text-2xl">Recursos</span>
                 <span className="text-sm text-gray-400">
@@ -196,7 +259,15 @@ export default function Home() {
                 className="w-full h-[250px]"
               />
             </div>
-            <div className="w-full flex-1 lg:h-[480px] h-auto min-w-[400px] p-4 border-2 bg-zinc-900 rounded-md border-slate-700 flex flex-col items-center justify-start gap-8 hover:border-purple-700 ease-in-out transition-colors">
+            <div
+              className="w-full flex-1 lg:h-[480px] h-auto min-w-[400px] p-4 border-2 bg-zinc-900 rounded-md border-slate-700 flex flex-col items-center justify-start gap-8 hover:border-purple-700 ease-in-out transition-colors"
+              style={{
+                transform: isInViewResources ? "none" : "translateX(15vw)",
+                opacity: isInViewResources ? 1 : 0,
+                transition:
+                  "transform 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.4s",
+              }}
+            >
               <div className="flex flex-col gap-y-2">
                 <span className="text-2xl">Atividades</span>
                 <span className="text-sm text-gray-400">
@@ -212,7 +283,15 @@ export default function Home() {
                 className="w-full h-[250px]"
               />
             </div>
-            <div className="w-full flex-1 lg:h-[480px] h-auto min-w-[400px] p-4 border-2 bg-zinc-900 rounded-md border-slate-700 flex flex-col items-center justify-start gap-8 hover:border-purple-700 ease-in-out transition-colors">
+            <div
+              className="w-full flex-1 lg:h-[480px] h-auto min-w-[400px] p-4 border-2 bg-zinc-900 rounded-md border-slate-700 flex flex-col items-center justify-start gap-8 hover:border-purple-700 ease-in-out transition-colors"
+              style={{
+                transform: isInViewResources ? "none" : "translateX(15vw)",
+                opacity: isInViewResources ? 1 : 0,
+                transition:
+                  "transform 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.6s",
+              }}
+            >
               <div className="flex flex-col gap-y-2">
                 <span className="text-2xl">Formação</span>
                 <span className="text-sm text-gray-400">
@@ -232,6 +311,10 @@ export default function Home() {
         </div>
       </section>
       <section className="w-full lg:p-24 p-4 relative flex items-center justify-center">
+        <Spline
+          scene="https://prod.spline.design/P2NsJDtc9iQ54KS7/scene.splinecode"
+          className="absolute lg:left-[8vw] left-[-100vw] !w-[300px] !h-[300px] top-[30px] hidden lg:block z-[-1]"
+        />
         <div className="w-full lg:max-w-[1280px] mx-auto  flex flex-col items-center justify-center gap-6 bbg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 p-4">
           <h2 className="text-4xl text-white">Tire suas ideias do papel</h2>
           <span className="text-xl">
@@ -243,14 +326,10 @@ export default function Home() {
         </div>
         <Spline
           scene="https://prod.spline.design/P2NsJDtc9iQ54KS7/scene.splinecode"
-          className="absolute left-[8vw] !w-[300px] !h-[300px] top-[30px] hidden lg:block z-[-1]"
-        />
-        <Spline
-          scene="https://prod.spline.design/P2NsJDtc9iQ54KS7/scene.splinecode"
-          className="absolute right-[8vw] !w-[300px] !h-[300px] top-[30px] hidden lg:block z-[-1]"
+          className="absolute lg:right-[8vw] !w-[300px] !h-[300px] top-[30px] hidden lg:block z-[-1]"
         />
       </section>
-      <section className="w-full bg-gray-900">
+      <section className="w-full bg-gray-800">
         <div className="w-full max-w-[1280px] mx-auto py-16 p-4 flex flex-col">
           <div className="flex flex-col lg:items-start items-center gap-4 lg:w-[900px] w-full">
             <span className="text-lime-400 text-md">
@@ -390,7 +469,7 @@ export default function Home() {
       <footer className="w-full py-4">
         <div className="w-full max-w-[1280px] mx-auto flex items-center justify-between">
           <span> SEL</span>
-          <Button>
+          <Button onClick={scrollToTop}>
             Voltar ao topo <ChevronUp />{" "}
           </Button>
         </div>
