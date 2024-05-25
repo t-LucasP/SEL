@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "name": "Alice Martins",
+    "position": "Diretora de Escola",
+    "testimonial": "A empresa desenvolveu um portal educacional incrível para nossa escola. O sistema é intuitivo e muito fácil de usar, tanto para professores quanto para alunos.",
+    "avatar": "https://randomuser.me/api/portraits/women/1.jpg",
+    "main_review": "Empresa inovadora"
+  },
+  {
+    "id": 2,
+    "name": "Carlos Silva",
+    "position": "Professor de Matemática",
+    "testimonial": "Estamos muito satisfeitos com o portal educacional desenvolvido. A equipe foi muito atenciosa e sempre disponível para resolver nossas dúvidas.",
+    "avatar": "https://randomuser.me/api/portraits/men/2.jpg",
+    "main_review": "Excelente suporte"
+  },
+  {
+    "id": 3,
+    "name": "Beatriz Oliveira",
+    "position": "Coordenadora Pedagógica",
+    "testimonial": "O portal criado pela empresa transformou a maneira como gerenciamos nossas aulas online. A interface é amigável e os recursos são exatamente o que precisávamos.",
+    "avatar": "https://randomuser.me/api/portraits/women/3.jpg",
+    "main_review": "Ferramentas úteis"
+  },
+  {
+    "id": 4,
+    "name": "Daniel Souza",
+    "position": "Professor de História",
+    "testimonial": "Recomendo fortemente! O serviço prestado superou nossas expectativas. O portal é robusto, seguro e extremamente funcional.",
+    "avatar": "https://randomuser.me/api/portraits/men/4.jpg",
+    "main_review": "Alta qualidade"
+  },
+  {
+    "id": 5,
+    "name": "Fernanda Ribeiro",
+    "position": "Diretora Adjunta",
+    "testimonial": "A colaboração com a empresa foi excelente desde o início. Eles entenderam nossas necessidades e entregaram um portal que tem sido um grande sucesso com nossos alunos.",
+    "avatar": "https://randomuser.me/api/portraits/women/5.jpg",
+    "main_review": "Muito profissional"
+  },
+  {
+    "id": 6,
+    "name": "Gustavo Lima",
+    "position": "Professor de Física",
+    "testimonial": "Trabalhar com esta empresa foi uma experiência incrível. O portal que desenvolveram é fácil de navegar e tem melhorado a interação entre professores e alunos.",
+    "avatar": "https://randomuser.me/api/portraits/men/6.jpg",
+    "main_review": "Interface amigável"
+  },
+  {
+    "id": 7,
+    "name": "Mariana Costa",
+    "position": "Coordenadora de Tecnologia",
+    "testimonial": "Estamos encantados com a qualidade do portal educacional desenvolvido. A empresa atendeu todas as nossas necessidades e o suporte pós-lançamento é excelente.",
+    "avatar": "https://randomuser.me/api/portraits/women/7.jpg",
+    "main_review": "Excelente qualidade"
+  }
+]

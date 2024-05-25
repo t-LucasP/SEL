@@ -32,9 +32,21 @@ import { ChevronRight, ChevronUp } from "lucide-react";
 import rightLeftDotted from "@/assets/images/lines/right-left.svg";
 import leftRightDotted from "@/assets/images/lines/left-right.svg";
 import questions from "@/lib/faq.json";
+import testimonials from "@/lib/testimonials.json";
 import ContactForm from "@/components/contact-form";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { Card, CardContent } from "@/components/ui/card";
+import Autoplay from "embla-carousel-autoplay";
+import { useMediaQuery } from "@/hooks/use-media-query";
+import TestimonialCard from "@/components/testimonial-card";
 
 export default function Home() {
   const scrollToTop = () => {
@@ -43,6 +55,8 @@ export default function Home() {
       behavior: "smooth",
     });
   };
+
+  const isDesktop = useMediaQuery("(min-width:1300px)");
 
   const ref = useRef(null);
   const refResources = useRef(null);
@@ -214,18 +228,52 @@ export default function Home() {
       <section className="w-screen bg-white py-12">
         <div className="w-full max-w-[1280px] m-auto flex flex-col gap-8">
           <span className="text-black font-semibold text-center text-lg">
-            Empresas que confiam no trabalho da SEL
+            Testemunhos de quem acredita no trabalho da SEL
           </span>
-          <Marquee className="flex gap-24" pauseOnHover={true}>
-            <div className="flex items-center justify-between gap-24">
-              <Image src={client1} alt="" className="w-[157px] grayscale-9" />
-              <Image src={client2} alt="" className="w-[157px] grayscale-9" />
-              <Image src={client3} alt="" className="w-[157px] grayscale-9" />
-              <Image src={client4} alt="" className="w-[157px] grayscale-9" />
-              <Image src={client5} alt="" className="w-[157px] grayscale-9" />
-              <Image src={client6} alt="" className="w-[157px] grayscale-9" />
-            </div>
-          </Marquee>
+          <Carousel
+            opts={{
+              align: "start",
+            }}
+            plugins={[
+              Autoplay({
+                delay: 6000,
+              }),
+            ]}
+            className="w-full"
+          >
+            <CarouselContent>
+              {testimonials.map((testimonial) => (
+                <TestimonialCard
+                  key={testimonial.id}
+                  avatarSrc={testimonial.avatar}
+                  name={testimonial.name}
+                  testimonial={testimonial.testimonial}
+                  position={testimonial.position}
+                  mainReview={testimonial.main_review}
+                />
+              ))}
+              {/* {Array.from({ length: 5 }).map((_, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                  <div className="p-1">
+                    <Card>
+                      <CardContent className="flex aspect-square items-center justify-center p-6">
+                        <span className="text-3xl font-semibold">
+                          {index + 1}
+                        </span>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </CarouselItem>
+              ))} */}
+            </CarouselContent>
+
+            {isDesktop && (
+              <>
+                <CarouselPrevious />
+                <CarouselNext />
+              </>
+            )}
+          </Carousel>
         </div>
       </section>
       <section className="w-screen py-24 bg-zinc-950">
@@ -315,7 +363,7 @@ export default function Home() {
           scene="https://prod.spline.design/P2NsJDtc9iQ54KS7/scene.splinecode"
           className="absolute lg:left-[8vw] left-[-100vw] !w-[300px] !h-[300px] top-[30px] hidden lg:block z-[-1]"
         />
-        <div className="w-full lg:max-w-[1280px] mx-auto  flex flex-col items-center justify-center gap-6 bbg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 p-4">
+        <div className="w-full lg:max-w-[1280px] mx-auto  flex flex-col items-center justify-center gap-6 bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 p-4">
           <h2 className="text-4xl text-white">Tire suas ideias do papel</h2>
           <span className="text-xl">
             Vamos explorar este universo de ideias juntos!
