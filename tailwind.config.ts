@@ -52,6 +52,10 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        selgold: {
+          DEFAULT: "hsl(var(--selgold))",
+          foreground: "hsl(var(--selgold))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

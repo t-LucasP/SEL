@@ -38,9 +38,9 @@ export default function TestimonialCard({
               </div>
             </div>
             <div className="w-full flex items-center justify-center gap-4">
-              <div className="bg-gradient-to-l from-[#FFD700] to-transparent h-[1px] flex-1 w-full "></div>
+              <div className="bg-gradient-to-l from-selgold to-transparent h-[1px] flex-1 w-full "></div>
               <p className="text-2xl">{mainReview}</p>
-              <div className="bg-gradient-to-r from-[#FFD700] to-transparent h-[1px] flex-1 "></div>
+              <div className="bg-gradient-to-r from-selgold to-transparent h-[1px] flex-1 "></div>
             </div>
             <span className="h-32 flex items-center justify-center">
               "{testimonial}"
