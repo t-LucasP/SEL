@@ -43,7 +43,7 @@ export default function TestimonialCard({
               <div className="bg-gradient-to-r from-selgold to-transparent h-[1px] flex-1 "></div>
             </div>
             <span className="h-32 flex items-center justify-center">
-              "{testimonial}"
+              {`"${testimonial}"`}
             </span>
           </CardContent>
           <Image
