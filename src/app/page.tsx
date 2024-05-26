@@ -13,13 +13,6 @@ import Lottie from "lottie-react";
 import Spline from "@splinetool/react-spline";
 import { Button } from "@/components/ui/button";
 import bg from "@/assets/images/background.jpg";
-import techImage from "@/assets/images/tech-and-educ.jpg";
-import client1 from "@/assets/images/clients/client-1.png";
-import client2 from "@/assets/images/clients/client-2.png";
-import client3 from "@/assets/images/clients/client-3.png";
-import client4 from "@/assets/images/clients/client-4.png";
-import client5 from "@/assets/images/clients/client-5.png";
-import client6 from "@/assets/images/clients/client-6.png";
 import activities from "@/assets/json-lootie/activities.json";
 import formation from "@/assets/json-lootie/formation.json";
 import resources from "@/assets/json-lootie/resources.json";
@@ -27,7 +20,6 @@ import dashboard from "@/assets/json-lootie/dashboard.json";
 import reports from "@/assets/json-lootie/reports.json";
 import access from "@/assets/json-lootie/access.json";
 import chat from "@/assets/json-lootie/chat.json";
-import GradientTextAnimated from "@/components/gradient-text";
 import { ChevronRight, ChevronUp } from "lucide-react";
 import rightLeftDotted from "@/assets/images/lines/right-left.svg";
 import leftRightDotted from "@/assets/images/lines/left-right.svg";
@@ -39,14 +31,13 @@ import { useInView } from "framer-motion";
 import {
   Carousel,
   CarouselContent,
-  CarouselItem,
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Card, CardContent } from "@/components/ui/card";
 import Autoplay from "embla-carousel-autoplay";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import TestimonialCard from "@/components/testimonial-card";
+import Video from "@/components/video";
 
 export default function Home() {
   const scrollToTop = () => {
@@ -113,120 +104,11 @@ export default function Home() {
         className="rounded-md p-px bg-gradient-to-b from-purple-700 to-transparent mx-auto w-fit  translate-y-[-15vh]  lg:max-w-[1280px] max-w-[90%]"
       >
         <div className="rounded-[calc(0.4rem-1px)]  p-5 bg-white dark:bg-gray-950 flex flex-col items-start gap-y-8 w-full">
-          <h2 className="text-3xl font-semibold text-center w-full">
-            Sobre a <GradientTextAnimated text="SEL" />
-          </h2>
-          <div className="flex gap-x-4 justify-between items-center">
-            <div className="flex flex-col gap-y-4 lg:w-1/2 w-full">
-              <div className="flex flex-col items-start gap-y-2 py-2">
-                <div className="w-full flex items-center justify-center gap-4">
-                  <div className="bg-gradient-to-l from-purple-700 to-transparent h-[1px] flex-1 w-full "></div>
-                  <p className="text-2xl">Visão Geral</p>
-                  <div className="bg-gradient-to-r from-purple-700 to-transparent h-[1px] flex-1 "></div>
-                </div>
-                <p className="text-md text-gray-400 ">
-                  Somos uma instituição dedicada ao desenvolvimento, capacitação
-                  e implementação de soluções inovadoras em Tecnologia
-                  Educacional. Com uma equipe de profissionais experientes em
-                  diferentes áreas educacionais, concentramos nossas atividades
-                  em Educação, Projetos e Consultorias em Tecnologia
-                  Educacional.
-                </p>
-              </div>
-              <div className="flex flex-col items-start gap-y-2 py-2">
-                <div className="w-full flex items-center justify-center gap-4">
-                  <div className="bg-gradient-to-l from-purple-700 to-transparent h-[1px] flex-1 w-full "></div>
-                  <p className="text-2xl">Missão</p>
-                  <div className="bg-gradient-to-r from-purple-700 to-transparent h-[1px] flex-1 "></div>
-                </div>
-                <p className="text-md text-gray-400 ">
-                  Na SEL, nossa missão é facilitar o uso eficaz da tecnologia na
-                  educação, promovendo um ambiente de aprendizagem inovador e
-                  engajador.
-                </p>
-              </div>
-              <div className="flex flex-col items-start gap-y-2 py-2">
-                <div className="w-full flex items-center justify-center gap-4">
-                  <div className="bg-gradient-to-l from-purple-700 to-transparent h-[1px] flex-1 w-full "></div>
-                  <p className="text-2xl">Compromisso</p>
-                  <div className="bg-gradient-to-r from-purple-700 to-transparent h-[1px] flex-1 "></div>
-                </div>
-                <p className="text-md text-gray-400 ">
-                  Na SEL, integramos tecnologia e educação para melhorar a
-                  aprendizagem e elevar a qualidade do ensino em escolas e redes
-                  de ensino básico.
-                </p>
-              </div>
-            </div>
-            <Image
-              src={techImage}
-              alt=""
-              className="rounded-lg w-1/2 max-w-[500px] h-[300px] lg:block hidden "
-            />
-          </div>
-          <div className="flex flex-col gap-8 w-full m-auto">
-            <div className="flex gap-4 w-full items-center">
-              <div className="bg-gradient-to-l from-purple-700 to-transparent h-[1px] flex-1 w-full "></div>
-              <span className="text-orange-400 text-lg">
-                Por que se juntar a nós
-              </span>
-              <div className="bg-gradient-to-r from-purple-700 to-transparent h-[1px] flex-1 "></div>
-            </div>
-            <div ref={ref} className="flex w-full lg:flex-row flex-col gap-4">
-              <div
-                className="w-full flex items-center justify-start p-4 h-[100px] overflow-hidden bg-slate-900 rounded-md"
-                style={{
-                  transform: isInView ? "none" : "translateY(15vh)",
-                  opacity: isInView ? 1 : 0,
-                  transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1)",
-                  transitionDelay: "0.2s",
-                }}
-              >
-                <span className="text-purple-700 translate-x-[-9px] text-[10rem] opacity-65">
-                  1
-                </span>
-                <span className="text-[1.2rem]">
-                  Desenvolvimento de Portal de Conteúdos Pedagógicos
-                </span>
-              </div>
-              <div
-                className="w-full flex items-center justify-start p-4 h-[100px] overflow-hidden bg-slate-900 rounded-md"
-                style={{
-                  transform: isInView ? "none" : "translateY(15vh)",
-                  opacity: isInView ? 1 : 0,
-                  transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1)",
-                  transitionDelay: "0.4s",
-                }}
-              >
-                <span className="text-purple-700 translate-x-[-9px] text-[10rem] opacity-65">
-                  2
-                </span>
-                <span className="text-[1.2rem]">
-                  Consultoria em Tecnologia Educacional
-                </span>
-              </div>
-              <div
-                className="w-full flex items-center justify-start p-4 h-[100px] overflow-hidden bg-slate-900 rounded-md"
-                style={{
-                  transform: isInView ? "none" : "translateY(15vh)",
-                  opacity: isInView ? 1 : 0,
-                  transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1)",
-                  transitionDelay: "0.6s",
-                }}
-              >
-                <span className="text-purple-700 translate-x-[-9px] text-[10rem] opacity-65">
-                  3
-                </span>
-                <span className="text-[1.2rem]">
-                  Implementação de Sala de Aula Interativa
-                </span>
-              </div>
-            </div>
-          </div>
+          <Video videoSrc="/assets/videos/template-video.mp4" />
         </div>
       </section>
       <section className="w-screen bg-white py-12">
-        <div className="w-full max-w-[1280px] m-auto flex flex-col gap-8">
+        <div className="w-full max-w-[1280px] m-auto flex flex-col gap-8 items-center">
           <span className="text-black font-semibold text-center text-lg">
             Testemunhos de quem acredita no trabalho da SEL
           </span>
@@ -239,7 +121,7 @@ export default function Home() {
                 delay: 6000,
               }),
             ]}
-            className="w-full"
+            className="w-full lg:max-w-full max-w-md "
           >
             <CarouselContent>
               {testimonials.map((testimonial) => (
@@ -378,7 +260,7 @@ export default function Home() {
         />
       </section>
       <section className="w-full bg-gray-800">
-        <div className="w-full max-w-[1280px] mx-auto py-16 p-4 flex flex-col">
+        <div className="w-full max-w-[1280px] mx-auto py-16 p-4 flex flex-col lg:gap-x-0 gap-12">
           <div className="flex flex-col lg:items-start items-center gap-4 lg:w-[900px] w-full">
             <span className="text-lime-400 text-md">
               Todos os recursos na palma da sua mão
@@ -459,7 +341,7 @@ export default function Home() {
           <h5 className="text-[1.8rem] font-bold text-center">
             Perguntas e respostas frequentes
           </h5>
-          <div className="flex items-end justify-between gap-6 lg:flex-row flex-col lg:w-full w-[90%] ">
+          <div className="flex lg:items-end items-center justify-between lg:gap-6 lg:flex-row flex-col lg:w-full w-[90%] gap-12">
             <Accordion type="single" collapsible className="w-full">
               {questions.map((question) => (
                 <AccordionItem
@@ -477,7 +359,7 @@ export default function Home() {
                 </AccordionItem>
               ))}
             </Accordion>
-            <div className="flex flex-col items-center justify-evenly p-4 gap-4 rounded-md bg-gradient-to-b from-emerald-500 to-emerald-900 w-fit">
+            <div className="flex flex-col items-center justify-evenly p-4 gap-4 rounded-md bg-gradient-to-b from-emerald-500 to-emerald-900 lg:w-fit w-full">
               <Lottie
                 autoPlay
                 animationData={chat}
@@ -492,7 +374,7 @@ export default function Home() {
         </div>
       </section>
       <section className="w-full bg-neutral-900 py-16 relative">
-        <div className="w-full max-w-[1280px] mx-auto py-4 flex lg:flex-row flex-col items-center justify-between">
+        <div className="w-full lg:max-w-[1280px] mx-auto py-4 flex lg:flex-row flex-col items-center justify-between max-w-[90%] lg:gap-6 gap-12  ">
           <div className="w-full flex flex-col gap-4">
             <span className="text-emerald-700 text-md font-semibold">
               FALE CONOSCO
@@ -511,7 +393,7 @@ export default function Home() {
         </div>
         <Spline
           scene="https://prod.spline.design/Knai6zdQmsCPg6JF/scene.splinecode"
-          className="absolute left-[-150px] top-0 !w-[500px] z-0"
+          className="absolute left-[-150px] top-0 !w-[500px] z-0 lg:block hidden"
         />
       </section>
       <footer className="w-full py-4">
