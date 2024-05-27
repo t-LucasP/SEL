@@ -9,9 +9,25 @@ import {
   FormMessage,
 } from "./ui/form";
 import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+import { number, z } from "zod";
+import { ChangeEvent, useState } from "react";
 
 export default function ContactForm() {
   const form = useForm();
+  const [charCounter, setCharCounter] = useState(0);
+
+  const formSchema = z.object({
+    name: z
+      .string()
+      .min(3, { message: "Este campo precisa ser preenchido!" })
+      .max(50),
+    email: z
+      .string()
+      .min(1, { message: "Este campo precisa ser preenchido!" })
+      .email("Por favor, digite um email válido"),
+    message: z.string().max(300),
+  });
 
   function onSubmit() {
     console.log("OI");
@@ -60,18 +76,21 @@ export default function ContactForm() {
         />
         <FormField
           control={form.control}
-          name="telephone"
+          name="message"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Telefone</FormLabel>
+            <FormItem className="items-start flex flex-col gap-2">
+              <FormLabel>Mensagem</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="(99) 99999-9999"
-                  {...field}
+                <Textarea
+                  placeholder="Digite sua mensagem"
                   className="bg-gray-800 hover:outline-emerald-500 hover:outline"
+                  rows={5}
+                  {...field}
+                  onChange={(e) => setCharCounter(e.target.value.length)}
+                  maxLength={300}
                 />
               </FormControl>
-              <FormMessage />
+              <span className=" w-full text-right">{`${charCounter}/300`}</span>
             </FormItem>
           )}
         />
