@@ -10,27 +10,40 @@ import {
 } from "./ui/form";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
-import { number, z } from "zod";
-import { ChangeEvent, useState } from "react";
+import { z } from "zod";
+import { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function ContactForm() {
-  const form = useForm();
   const [charCounter, setCharCounter] = useState(0);
 
   const formSchema = z.object({
     name: z
-      .string()
+      .string({
+        required_error: "O campo nome é obrigatório!",
+      })
       .min(3, { message: "Este campo precisa ser preenchido!" })
       .max(50),
     email: z
-      .string()
+      .string({
+        required_error: "O campo email é obrigatório!",
+      })
       .min(1, { message: "Este campo precisa ser preenchido!" })
       .email("Por favor, digite um email válido"),
-    message: z.string().max(300),
+    message: z
+      .string({
+        required_error: "O campo mensagem é obrigatório",
+      })
+      .min(1, { message: "O campo mensagem precisa ser preenchido!" })
+      .max(300, { message: "O máximo de caracteres é 300" }),
   });
 
-  function onSubmit() {
-    console.log("OI");
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+  });
+
+  function onSubmit(data: z.infer<typeof formSchema>) {
+    console.log(JSON.stringify(data, null, 2));
   }
 
   return (
@@ -45,7 +58,7 @@ export default function ContactForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Nome</FormLabel>
+              <FormLabel className="!text-white">Nome</FormLabel>
               <FormControl>
                 <Input
                   placeholder="Nome"
@@ -53,7 +66,7 @@ export default function ContactForm() {
                   className="bg-gray-800 hover:outline-emerald-500 hover:outline focus:outline-emerald-500"
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage className="!text-red-600" />
             </FormItem>
           )}
         />
@@ -62,7 +75,7 @@ export default function ContactForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel className="!text-white">Email</FormLabel>
               <FormControl>
                 <Input
                   placeholder="Email"
@@ -70,7 +83,7 @@ export default function ContactForm() {
                   className="bg-gray-800 hover:outline-emerald-500 hover:outline"
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage className="!text-red-600" />
             </FormItem>
           )}
         />
@@ -79,7 +92,7 @@ export default function ContactForm() {
           name="message"
           render={({ field }) => (
             <FormItem className="items-start flex flex-col gap-2">
-              <FormLabel>Mensagem</FormLabel>
+              <FormLabel className="!text-white">Mensagem</FormLabel>
               <FormControl>
                 <Textarea
                   placeholder="Digite sua mensagem"
@@ -90,6 +103,7 @@ export default function ContactForm() {
                   maxLength={300}
                 />
               </FormControl>
+              <FormMessage className="!text-red-600" />
               <span className=" w-full text-right">{`${charCounter}/300`}</span>
             </FormItem>
           )}
