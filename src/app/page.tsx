@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/accordion";
 import Header from "@/components/header";
 import Image from "next/image";
-import Marquee from "react-fast-marquee";
 import Lottie from "lottie-react";
 import Spline from "@splinetool/react-spline";
 import { Button } from "@/components/ui/button";
@@ -47,14 +46,10 @@ export default function Home() {
     });
   };
 
-  const isDesktop = useMediaQuery("(min-width:1300px)");
+  const isDesktop = useMediaQuery("(min-width:1400px)");
 
   const ref = useRef(null);
-  const refResources = useRef(null);
   const isInView = useInView(ref, {
-    once: true,
-  });
-  const isInViewResources = useInView(ref, {
     once: true,
   });
 
@@ -118,10 +113,10 @@ export default function Home() {
             }}
             plugins={[
               Autoplay({
-                delay: 6000,
+                delay: 5000,
               }),
             ]}
-            className="w-full lg:max-w-full max-w-md "
+            className="w-full lg:max-w-full max-w-full "
           >
             <CarouselContent>
               {testimonials.map((testimonial) => (
@@ -134,21 +129,7 @@ export default function Home() {
                   mainReview={testimonial.main_review}
                 />
               ))}
-              {/* {Array.from({ length: 5 }).map((_, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                  <div className="p-1">
-                    <Card>
-                      <CardContent className="flex aspect-square items-center justify-center p-6">
-                        <span className="text-3xl font-semibold">
-                          {index + 1}
-                        </span>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </CarouselItem>
-              ))} */}
             </CarouselContent>
-
             {isDesktop && (
               <>
                 <CarouselPrevious />
@@ -161,15 +142,15 @@ export default function Home() {
       <section className="w-screen py-24 bg-zinc-950">
         <div
           className="w-full lg:max-w-[1280px] m-auto max-w-[90%] flex flex-col items-start justify-start gap-8"
-          ref={refResources}
+          ref={ref}
         >
           <h4 className="text-3xl">Todos os recursos que você procura</h4>
           <div className="flex gap-4 flex-wrap">
             <div
               className="w-full flex-1 lg:h-[480px] h-auto min-w-[400px] p-4 border-2 bg-zinc-900 rounded-md border-slate-700 flex flex-col items-center justify-start gap-8 hover:border-purple-700 ease-in-out transition-colors"
               style={{
-                transform: isInViewResources ? "none" : "translateX(15vw)",
-                opacity: isInViewResources ? 1 : 0,
+                transform: isInView ? "none" : "translateX(15vw)",
+                opacity: isInView ? 1 : 0,
                 transition:
                   "transform 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.2s",
               }}
@@ -192,8 +173,8 @@ export default function Home() {
             <div
               className="w-full flex-1 lg:h-[480px] h-auto min-w-[400px] p-4 border-2 bg-zinc-900 rounded-md border-slate-700 flex flex-col items-center justify-start gap-8 hover:border-purple-700 ease-in-out transition-colors"
               style={{
-                transform: isInViewResources ? "none" : "translateX(15vw)",
-                opacity: isInViewResources ? 1 : 0,
+                transform: isInView ? "none" : "translateX(15vw)",
+                opacity: isInView ? 1 : 0,
                 transition:
                   "transform 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.4s",
               }}
@@ -216,8 +197,8 @@ export default function Home() {
             <div
               className="w-full flex-1 lg:h-[480px] h-auto min-w-[400px] p-4 border-2 bg-zinc-900 rounded-md border-slate-700 flex flex-col items-center justify-start gap-8 hover:border-purple-700 ease-in-out transition-colors"
               style={{
-                transform: isInViewResources ? "none" : "translateX(15vw)",
-                opacity: isInViewResources ? 1 : 0,
+                transform: isInView ? "none" : "translateX(15vw)",
+                opacity: isInView ? 1 : 0,
                 transition:
                   "transform 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.6s",
               }}
@@ -245,7 +226,7 @@ export default function Home() {
           scene="https://prod.spline.design/P2NsJDtc9iQ54KS7/scene.splinecode"
           className="absolute lg:left-[8vw] left-[-100vw] !w-[300px] !h-[300px] top-[30px] hidden lg:block z-[-1]"
         />
-        <div className="w-full lg:max-w-[1280px] mx-auto  flex flex-col items-center justify-center gap-6 bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 p-4">
+        <div className="w-full lg:max-w-[1280px] mx-auto text-center md:text-left flex flex-col items-center justify-center gap-6 bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 p-4">
           <h2 className="text-4xl text-white">Tire suas ideias do papel</h2>
           <span className="text-xl">
             Vamos explorar este universo de ideias juntos!
@@ -393,7 +374,7 @@ export default function Home() {
         </div>
         <Spline
           scene="https://prod.spline.design/Knai6zdQmsCPg6JF/scene.splinecode"
-          className="absolute left-[-150px] top-0 !w-[500px] z-0 lg:block hidden"
+          className="absolute left-[-150px] top-0 !w-[500px] z-0 2xl:block hidden"
         />
       </section>
       <footer className="w-full py-4">

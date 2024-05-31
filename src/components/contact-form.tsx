@@ -11,11 +11,18 @@ import {
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { z } from "zod";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { sendClientResponse } from "@/app/api/send/client-email";
+import { toast } from "./ui/use-toast";
+import InputMask from "react-input-mask";
+import { sendTeamResponse } from "@/app/api/send/team-email";
+import SpinnerLoader from "./spinner";
 
 export default function ContactForm() {
   const [charCounter, setCharCounter] = useState(0);
+  const [isSendingEmails, setIsSendingEmails] = useState(false);
+  const [isButtonDisabeld, setIsButtonDisabled] = useState(false);
 
   const formSchema = z.object({
     name: z
@@ -30,9 +37,15 @@ export default function ContactForm() {
       })
       .min(1, { message: "Este campo precisa ser preenchido!" })
       .email("Por favor, digite um email válido"),
+    phone: z
+      .string()
+      .regex(
+        /^\(\d{2}\) \d{5}-\d{4}$/,
+        "Por favor, digite um número de telefone válido"
+      ),
     message: z
       .string({
-        required_error: "O campo mensagem é obrigatório",
+        required_error: "O campo mensagem é obrigatório!",
       })
       .min(1, { message: "O campo mensagem precisa ser preenchido!" })
       .max(300, { message: "O máximo de caracteres é 300" }),
@@ -42,9 +55,42 @@ export default function ContactForm() {
     resolver: zodResolver(formSchema),
   });
 
-  function onSubmit(data: z.infer<typeof formSchema>) {
-    console.log(JSON.stringify(data, null, 2));
-  }
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    setIsSendingEmails(true);
+    setIsButtonDisabled(true);
+
+    try {
+      const clientEmailResponse = await sendClientResponse(data);
+      const teamEmailResponse = await sendTeamResponse(data);
+
+      if (
+        teamEmailResponse.status === 200 &&
+        teamEmailResponse.status === 200
+      ) {
+        toast({
+          title: "Mensagem enviada!",
+          description: "Mensagem enviada com sucesso, agradecemos o contato!",
+        });
+        setIsSendingEmails(false);
+        setIsButtonDisabled(false);
+      } else {
+        toast({
+          title: "Erro",
+          description: "Erro ao enviar mensagem, tente novamente mais tarde.",
+        });
+        setIsSendingEmails(false);
+        setIsButtonDisabled(false);
+      }
+    } catch (error) {
+      toast({
+        title: "Erro",
+        description: "Erro ao enviar mensagem, tente novamente mais tarde.",
+      });
+
+      setIsSendingEmails(false);
+      setIsButtonDisabled(false);
+    }
+  };
 
   return (
     <Form {...form}>
@@ -63,7 +109,7 @@ export default function ContactForm() {
                 <Input
                   placeholder="Nome"
                   {...field}
-                  className="bg-gray-800 hover:outline-emerald-500 hover:outline focus:outline-emerald-500"
+                  className="bg-gray-800 hover:outline-emerald-500 hover:outline focus:!ring-emerald-500"
                 />
               </FormControl>
               <FormMessage className="!text-red-600" />
@@ -80,7 +126,25 @@ export default function ContactForm() {
                 <Input
                   placeholder="Email"
                   {...field}
-                  className="bg-gray-800 hover:outline-emerald-500 hover:outline"
+                  className="bg-gray-800 hover:outline-emerald-500 hover:outline focus:!ring-emerald-500"
+                />
+              </FormControl>
+              <FormMessage className="!text-red-600" />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="phone"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="!text-white">Telefone</FormLabel>
+              <FormControl>
+                <InputMask
+                  mask="(99) 99999-9999"
+                  placeholder="(99) 99999-9999"
+                  {...field}
+                  className="flex h-10 w-full rounded-md border border-input px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-gray-800 hover:outline-emerald-500 hover:outline focus:!ring-emerald-500"
                 />
               </FormControl>
               <FormMessage className="!text-red-600" />
@@ -96,10 +160,9 @@ export default function ContactForm() {
               <FormControl>
                 <Textarea
                   placeholder="Digite sua mensagem"
-                  className="bg-gray-800 hover:outline-emerald-500 hover:outline"
+                  className="bg-gray-800 hover:outline-emerald-500 hover:outline focus:!ring-emerald-500"
                   rows={5}
                   {...field}
-                  onChange={(e) => setCharCounter(e.target.value.length)}
                   maxLength={300}
                 />
               </FormControl>
@@ -110,9 +173,10 @@ export default function ContactForm() {
         />
         <Button
           type="submit"
-          className="w-full bg-emerald-400 text-white border border-emerald-500 text-md hover:bg-transparent hover:text-emerald-500  "
+          className="w-full bg-emerald-400 text-white border border-emerald-500 text-md hover:bg-transparent hover:text-emerald-500"
+          disabled={isButtonDisabeld}
         >
-          Enviar
+          {isSendingEmails ? <SpinnerLoader color="fill-white" /> : "Enviar"}
         </Button>
       </form>
     </Form>
